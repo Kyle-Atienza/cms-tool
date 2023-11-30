@@ -172,9 +172,9 @@ export default {
     })
 
     const onAddSubField = () => {
-      const newField = fields
+      const newField = fields.value
         .filter((field) => !field.parentOnly)
-        .value.map((field) => ({
+        .map((field) => ({
           name: field.name,
           value: ''
         }))

@@ -1,5 +1,5 @@
 <template>
-  <main id="sample">
+  <main class="flex flex-col" id="sample">
     <Editor
       ref="editor"
       id="editor"

@@ -24,11 +24,6 @@ const fields = [
         name: 'Direct Link',
         value: ''
       },
-      {
-        name: 'Preview',
-        parentOnly: true,
-        value: ''
-      }
     ],
     restId: false,
     finalUrl: false,
@@ -205,5 +200,25 @@ const fields = [
     subFields: []
   } */
 ]
+
+/* const previews = [
+  {
+    name: 'Carousel Preview',
+    emoji: '🎠',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'URL',
+        value: ''
+      },
+    ],
+    restId: false,
+    finalUrl: false,
+    subFields: []
+  },
+] */
+
+
 
 export { fields }

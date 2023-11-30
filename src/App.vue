@@ -1,26 +1,18 @@
 <template>
   <div class="flex">
-    <div class="w-[500px] min-w-[280px] h-screen sticky top-0 bg-white px-5 py-8">
-      <div class="overflow-auto">
-        <div class="flex flex-col border-2 p-4 rounded-xl">
-          <p class="text-2xl leading-[1em]">Needs</p>
-          <div class="flex flex-wrap mt-4 gap-2" v-if="ticketNeeds">
-            <button
-              v-for="(field, index) in ticketNeeds"
-              :class="['btn', isSelected(field.name) ? 'bg-primary' : '']"
-              :key="index"
-              @click="onAddField(field)"
-            >
-              {{ field.name }}
-            </button>
-          </div>
-        </div>
-        <div class="flex flex-col gap-1/2">
-          <button class="btn mt-4 w-full btn-primary" @click="onCopyComment">Get Comment</button>
-          <button class="btn mt-4 w-full btn-error" @click="setInitialFields">Reset</button>
-        </div>
-        <rich-text class="h-[300px] mt-4" ref="richText" />
+    <div class="w-[420px] min-w-[280px] h-screen sticky top-0 bg-white p-5 overflow-auto">
+      <div class="flex flex-col border-2 p-4 rounded-xl">
+        <p class="text-2xl leading-[1em]">Needs</p>
+        <fields-select
+          :fields="ticketNeeds"
+          @updateFields="(index) => onAddField(index)"
+        />
       </div>
+      <div class="flex flex-col gap-1/2">
+        <button class="btn mt-4 w-full btn-primary" @click="onCopyComment">Get Comment</button>
+        <button class="btn mt-4 w-full btn-error" @click="setInitialFields">Reset</button>
+      </div>
+      <rich-text class="h-[300px] mt-4" ref="richText" />
     </div>
     <div class="min-h-screen flex flex-col gap-5 items-center justify-center flex-1">
       <div class="py-24 px-6">
@@ -28,6 +20,11 @@
           v-model="ticketNeeds"
           :key="ticketNeeds.filter((need) => need.selected).length"
         />
+        <!-- <div class="divider"></div>
+        <ticket-fields
+          v-model="ticketNeeds"
+          :key="ticketNeeds.filter((need) => need.selected).length"
+        /> -->
       </div>
     </div>
   </div>
@@ -35,7 +32,7 @@
 
 <script>
 import { TicketPage } from './pages'
-import { TicketFields, RichText } from './components'
+import { FieldsSelect, TicketFields, RichText } from './components'
 
 import { flattenObjectArrayRecursive } from './helpers/arrayHelper'
 import { getCommentFromFields } from './helpers/ticketHelper'
@@ -46,6 +43,7 @@ import { ref, watch, onMounted, onUnmounted } from 'vue'
 
 export default {
   components: {
+    FieldsSelect,
     RichText,
     TicketFields
   },
@@ -53,21 +51,17 @@ export default {
     const richText = ref(null)
 
     const ticketNeeds = ref([])
+    const ticketPreviews = ref([])
     const comment = ref('')
 
     const isSelected = (field) => {
       return ticketNeeds.value?.find((need) => need.name === field)?.selected
     }
 
-    const onAddField = (field) => {
-      const fieldIndex = ticketNeeds.value.findIndex((need) => need.name === field.name)
+    const onAddField = (fieldIndex) => {
+      // const fieldIndex = ticketNeeds.value.findIndex((need) => need.name === field.name)
 
-      if (!ticketNeeds.value[fieldIndex].selected) {
-        ticketNeeds.value[fieldIndex].selected = true
-      } else {
-        ticketNeeds.value[fieldIndex].selected = false
-      }
-
+      ticketNeeds.value[fieldIndex].selected = !ticketNeeds.value[fieldIndex].selected;
       saveData()
     }
 
