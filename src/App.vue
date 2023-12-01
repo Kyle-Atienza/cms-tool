@@ -1,7 +1,8 @@
 <template>
   <div class="flex">
     <div class="w-[420px] min-w-[280px] h-screen sticky top-0 bg-white p-5 overflow-auto">
-      <div class="flex flex-col border-2 p-4 rounded-xl">
+      <ticket-name />
+      <div class="flex flex-col border-2 p-4 rounded-xl mt-4">
         <p class="text-2xl leading-[1em]">Needs</p>
         <fields-select
           :fields="ticketNeeds"
@@ -31,8 +32,7 @@
 </template>
 
 <script>
-import { TicketPage } from './pages'
-import { FieldsSelect, TicketFields, RichText } from './components'
+import { TicketName, FieldsSelect, TicketFields, RichText } from './components'
 
 import { flattenObjectArrayRecursive } from './helpers/arrayHelper'
 import { getCommentFromFields } from './helpers/ticketHelper'
@@ -43,6 +43,7 @@ import { ref, watch, onMounted, onUnmounted } from 'vue'
 
 export default {
   components: {
+    TicketName,
     FieldsSelect,
     RichText,
     TicketFields
@@ -51,16 +52,12 @@ export default {
     const richText = ref(null)
 
     const ticketNeeds = ref([])
-    const ticketPreviews = ref([])
-    const comment = ref('')
 
     const isSelected = (field) => {
       return ticketNeeds.value?.find((need) => need.name === field)?.selected
     }
 
     const onAddField = (fieldIndex) => {
-      // const fieldIndex = ticketNeeds.value.findIndex((need) => need.name === field.name)
-
       ticketNeeds.value[fieldIndex].selected = !ticketNeeds.value[fieldIndex].selected;
       saveData()
     }
