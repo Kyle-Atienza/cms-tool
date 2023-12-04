@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-2">
-    <input type="text" placeholder="Enter Ticket Name" class="input w-full max-w-xs" v-model="fullName" />
+    <input type="text" placeholder="Enter Ticket Name" class="input w-full w-full" v-model="fullName" />
     <div class="flex flex-wrap gap-2">
       <button class="btn btn-sm" @click="copyString(fullName)">
         Copy Full
