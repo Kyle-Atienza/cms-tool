@@ -29,6 +29,7 @@ import { ref, onMounted, watch } from 'vue'
 
 import FieldCard from './FieldCard.vue'
 import SubFields from './SubFields.vue'
+import InputField from './InputField.vue'
 
 export default {
   props: {
@@ -39,6 +40,7 @@ export default {
   },
   emits: ['update:modelValue'],
   components: {
+    InputField,
     FieldCard,
     SubFields
   },

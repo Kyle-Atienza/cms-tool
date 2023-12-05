@@ -21,12 +21,18 @@ const fields = [
     choice: true,
     value: [
       {
+        name: 'Preview URL',
+        parentField: true,
+        value: ''
+      },
+      {
         name: 'Direct Link',
         value: ''
       },
     ],
     restId: false,
     finalUrl: false,
+    previewUrl: true,
     subFields: []
   },
   {
@@ -36,12 +42,18 @@ const fields = [
     choice: true,
     value: [
       {
+        name: 'Preview URL',
+        parentField: true,
+        value: ''
+      },
+      {
         name: 'Direct Link',
         value: ''
       }
     ],
     restId: false,
     finalUrl: false,
+    previewUrl: true,
     subFields: []
   },
   {

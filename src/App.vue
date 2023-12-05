@@ -6,6 +6,7 @@
           <ticket-name />
           <div class="divider"></div>
           <ticket-badges class="mt-4" />
+          <slug-fields class="mt-4" />
           <div class="flex flex-col border-2 p-4 rounded-xl mt-4">
             <p class="text-2xl leading-[1em]">Needs</p>
             <fields-select
@@ -32,11 +33,6 @@
           v-model="ticketNeeds"
           :key="ticketNeeds.filter((need) => need.selected).length"
         />
-        <!-- <div class="divider"></div>
-        <ticket-fields
-          v-model="ticketNeeds"
-          :key="ticketNeeds.filter((need) => need.selected).length"
-        /> -->
       </div>
     </div>
   </div>
@@ -48,6 +44,7 @@ import {
   TicketBadges,
   FieldsSelect,
   TicketFields,
+  SlugFields,
   RichText 
 } from './components'
 
@@ -63,6 +60,7 @@ export default {
     TicketName,
     TicketBadges,
     FieldsSelect,
+    SlugFields,
     RichText,
     TicketFields
   },
@@ -114,7 +112,7 @@ export default {
     )
 
     onMounted(() => {
-      console.log(JSON.parse(sessionStorage.getItem('ticket')))
+      // console.log(JSON.parse(sessionStorage.getItem('ticket')))
       ticketNeeds.value = fields
 
       if (JSON.parse(sessionStorage.getItem('ticket'))) {

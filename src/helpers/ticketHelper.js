@@ -12,8 +12,6 @@ const getCommentFromFields = (data, depth = 0) => {
       result += `${tab}<li>${obj.name}: `
 
       if (obj.value) {
-        // console.log()
-
         if (restId) {
           // for rest id
           result += `${restId} - <a href="${dl}">DL</a>`
@@ -25,7 +23,7 @@ const getCommentFromFields = (data, depth = 0) => {
           if (obj.value.length > 1) {
             result += '<ul>'
             obj.value.forEach((objValue) => {
-              result += `<li>${objValue.name}: <a href="${objValue.value}">${objValue.value}</a></li>`
+              result += objValue.value ? `<li>${objValue.name}: <a href="${objValue.value}">${objValue.value}</a></li>` : ''
             })
             result += '</ul>'
           } else {

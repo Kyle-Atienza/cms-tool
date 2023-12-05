@@ -3,7 +3,7 @@
     <div
       v-for="(field, index) in subFields"
       :key="index"
-      class="card max-w-[800px] bg-base-100 shadow-xl bg-white p-5 mt-3"
+      class="card max-w-[800px] bg-base-100 shadow-xl bg-white p-5 mt-3 first:mt-0"
     >
       <field-card
         v-bind="{
