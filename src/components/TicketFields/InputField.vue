@@ -7,7 +7,7 @@
       :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"
     />
     <div class="flex gap-3">
-      <button class="btn">
+      <button class="btn" :disabled="!isURL(modelValue)" @click="openURL">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -26,7 +26,7 @@
           />
         </svg>
       </button>
-      <button class="btn">
+      <button class="btn" :disabled="modelValue === ''" @click="copyValue">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -46,14 +46,30 @@
 </template>
 
 <script>
+import isURL from 'validator/lib/isURL'
+import { computed } from 'vue';
+
 export default {
   props: {
     name: String,
     modelValue: String,
   },
-  setup() {
+  setup(props) {
+    const fieldValue = computed(() => props.modelValue)
+
+    const openURL = () => {
+      window.open(fieldValue.value, '_blank')
+    }
+
+    const copyValue = () => {
+      navigator.clipboard.writeText(fieldValue.value)
+    }
+    
     return {
 
+      isURL,
+      openURL,
+      copyValue
     }
   }
 }
