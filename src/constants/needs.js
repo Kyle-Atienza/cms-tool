@@ -12,7 +12,8 @@ const fields = [
     ],
     restId: false,
     finalUrl: false,
-    subFields: []
+    subFields: [],
+    checklist: ['Add Screenshots']
   },
   {
     name: 'Carousel',
