@@ -1,16 +1,18 @@
 <template>
   <div class="flex">
-    <div class="w-[420px] flex flex-col min-w-[280px] h-screen sticky top-0 bg-white p-5 ">
-      <div class="flex-grow overflow-auto">
-        <ticket-name />
-        <div class="divider"></div>
-        <ticket-badges class="mt-4" />
-        <div class="flex flex-col border-2 p-4 rounded-xl mt-4">
-          <p class="text-2xl leading-[1em]">Needs</p>
-          <fields-select
-            :fields="ticketNeeds"
-            @updateFields="(index) => onAddField(index)"
-          />
+    <div class="w-[420px] flex flex-col min-w-[280px] h-screen sticky top-0 bg-white p-5 overflow-scroll">
+      <div class="flex flex-col">
+        <div class="overflow-auto">
+          <ticket-name />
+          <div class="divider"></div>
+          <ticket-badges class="mt-4" />
+          <div class="flex flex-col border-2 p-4 rounded-xl mt-4">
+            <p class="text-2xl leading-[1em]">Needs</p>
+            <fields-select
+              :fields="ticketNeeds"
+              @updateFields="(index) => onAddField(index)"
+            />
+          </div>
         </div>
         <div class="flex flex-col gap-1/2">
           <div class="flex gap-2">
@@ -19,7 +21,7 @@
           </div>
         </div>
       </div>  
-      <div class="mt-4 h-1/2">
+      <div class="mt-4 flex-1 h-1/2">
         <rich-text class="" ref="richText" />
         <button class="btn mt-4 w-full btn-primary" @click="onCopyComment">Copy Comment</button>
       </div>

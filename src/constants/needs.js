@@ -163,6 +163,21 @@ const fields = [
     subFields: []
   },
   {
+    name: 'Layout',
+    emoji: '🎮',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Direct Link',
+        value: ''
+      },
+    ],
+    restId: false,
+    finalUrl: true,
+    subFields: []
+  },
+  {
     name: 'Core',
     emoji: '🌍',
     selected: false,
