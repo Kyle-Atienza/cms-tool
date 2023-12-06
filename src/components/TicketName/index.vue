@@ -29,7 +29,7 @@ export default {
     }
 
     watch(fullName, (str) => {
-      const pattern = /[\/\\:*?"<>|,–]/g;
+      const pattern = /[\/\\:*?"<>|,–+]/g;
       let nameToSanitize = str
 
       nameToSanitize = nameToSanitize.replace(pattern, '');
