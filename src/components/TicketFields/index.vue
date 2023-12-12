@@ -4,7 +4,7 @@
       <div class="card bg-base-100 shadow-xl bg-white p-5">
         <field-card
           v-bind="{
-            name: `${field.name} ${field.emoji}`,
+            name: `${field.label || field.name} ${field.emoji}`,
             subFields: field.subFields
           }"
           parent

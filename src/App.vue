@@ -5,7 +5,7 @@
         <div class="overflow-auto">
           <ticket-name />
           <div class="divider"></div>
-          <!-- <ticket-badges class="mt-4" /> -->
+          <ticket-badges class="mt-4" />
           <div class="flex flex-col border-2 p-4 rounded-xl mt-4">
             <p class="text-2xl leading-[1em]">Needs</p>
             <fields-select

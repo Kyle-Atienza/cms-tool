@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
  
 export default {
   setup() {
@@ -29,6 +29,8 @@ export default {
     }
 
     watch(fullName, (str) => {
+      sessionStorage.setItem('ticketName', fullName.value)
+
       const pattern = /[\/\\:*?"<>|,–+]/g;
       let nameToSanitize = str
 
@@ -40,6 +42,11 @@ export default {
       id.value = str.split(' ')[0]
     })
 
+    onMounted(() => {
+      const savedName = sessionStorage.getItem('ticketName')
+      if (savedName) fullName.value = savedName
+    })
+
     return {
       fullName,
       sanitizedName,
@@ -49,4 +56,4 @@ export default {
     }
   }
 }
-</script>
+</script> 

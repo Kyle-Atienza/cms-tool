@@ -1,6 +1,7 @@
 const fields = [
   {
     name: 'Creatives',
+    label: 'Creatives',
     emoji: '🎨',
     selected: false,
     choice: true,
@@ -17,6 +18,7 @@ const fields = [
   },
   {
     name: 'Carousel',
+    label: 'Carousel',
     emoji: '🎠',
     selected: false,
     choice: true,
@@ -38,6 +40,7 @@ const fields = [
   },
   {
     name: 'Static Tile',
+    label: 'Static Tile',
     emoji: '⏹',
     selected: false,
     choice: true,
@@ -59,6 +62,7 @@ const fields = [
   },
   {
     name: 'MPP',
+    label: 'MPP',
     emoji: '📣',
     selected: false,
     choice: true,
@@ -78,6 +82,7 @@ const fields = [
   },
   {
     name: 'Tournament Page',
+    label: 'Tournament Page',
     emoji: '🏆',
     selected: false,
     choice: true,
@@ -101,6 +106,7 @@ const fields = [
   },
   {
     name: 'Rest ID',
+    label: 'Rest ID',
     emoji: '💳',
     selected: false,
     choice: true,
@@ -120,6 +126,7 @@ const fields = [
   },
   {
     name: 'PAT',
+    label: 'PAT',
     emoji: '',
     selected: false,
     choice: true,
@@ -139,6 +146,7 @@ const fields = [
   },
   {
     name: 'EDS',
+    label: 'EDS',
     emoji: '',
     selected: false,
     choice: true,
@@ -158,6 +166,7 @@ const fields = [
   },
   {
     name: 'Landing Page',
+    label: 'Landing Page',
     emoji: '🛬',
     selected: false,
     choice: true,
@@ -176,8 +185,25 @@ const fields = [
     subFields: []
   },
   {
-    name: 'Layout',
-    emoji: '🎮',
+    name: 'Pick A Box',
+    label: 'Layout',
+    emoji: '📦',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Direct Link',
+        value: ''
+      },
+    ],
+    restId: false,
+    finalUrl: true,
+    subFields: []
+  },
+  {
+    name: 'Spin The Wheel',
+    label: 'Layout',
+    emoji: '🎡',
     selected: false,
     choice: true,
     value: [
@@ -192,6 +218,7 @@ const fields = [
   },
   {
     name: 'Core',
+    label: 'Core',
     emoji: '🌍',
     selected: false,
     choice: true,
@@ -232,6 +259,7 @@ const fields = [
 /* const previews = [
   {
     name: 'Carousel Preview',
+    label: 'Carousel Preview',
     emoji: '🎠',
     selected: false,
     choice: true,
