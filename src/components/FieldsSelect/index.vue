@@ -23,7 +23,10 @@ export default {
     }
 
     const onSelectField = (field) => {
-      emit('updateFields', props.fields.findIndex((need) => need.name === field.name))
+      emit(
+        'updateFields',
+        props.fields.findIndex((need) => need.name === field.name)
+      )
     }
 
     return {

@@ -31,7 +31,7 @@ const fields = [
       {
         name: 'Direct Link',
         value: ''
-      },
+      }
     ],
     restId: false,
     finalUrl: false,
@@ -39,17 +39,12 @@ const fields = [
     subFields: []
   },
   {
-    name: 'Static Tile',
-    label: 'Static Tile',
-    emoji: '⏹',
+    name: 'ODR Banner',
+    label: 'ODR Banner',
+    emoji: '🏁',
     selected: false,
     choice: true,
     value: [
-      {
-        name: 'Preview URL',
-        parentField: true,
-        value: ''
-      },
       {
         name: 'Direct Link',
         value: ''
@@ -57,8 +52,9 @@ const fields = [
     ],
     restId: false,
     finalUrl: false,
-    previewUrl: true,
-    subFields: []
+    previewUrl: false,
+    subFields: [],
+    color: 'green-200'
   },
   {
     name: 'MPP',
@@ -78,7 +74,8 @@ const fields = [
     ],
     restId: false,
     finalUrl: false,
-    subFields: []
+    subFields: [],
+    color: 'green-200'
   },
   {
     name: 'Tournament Page',
@@ -102,7 +99,33 @@ const fields = [
     ],
     restId: false,
     finalUrl: false,
-    subFields: []
+    subFields: [],
+    color: 'violet-300'
+  },
+  {
+    name: 'Banners',
+    label: 'Banners',
+    emoji: '🏆',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Big Banner',
+        value: ''
+      },
+      {
+        name: 'Exit Banner',
+        value: ''
+      },
+      {
+        name: 'Exit Banner w/ CTA',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: false,
+    subFields: [],
+    color: 'violet-300'
   },
   {
     name: 'Rest ID',
@@ -122,6 +145,28 @@ const fields = [
     ],
     restId: true,
     finalUrl: false,
+    subFields: []
+  },
+  {
+    name: 'Static Tile',
+    label: 'Static Tile',
+    emoji: '⏹',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Preview URL',
+        parentField: true,
+        value: ''
+      },
+      {
+        name: 'Direct Link',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: false,
+    previewUrl: true,
     subFields: []
   },
   {
@@ -194,11 +239,12 @@ const fields = [
       {
         name: 'Direct Link',
         value: ''
-      },
+      }
     ],
     restId: false,
     finalUrl: true,
-    subFields: []
+    subFields: [],
+    color: '#rose-200'
   },
   {
     name: 'Spin The Wheel',
@@ -210,11 +256,46 @@ const fields = [
       {
         name: 'Direct Link',
         value: ''
-      },
+      }
     ],
     restId: false,
     finalUrl: true,
-    subFields: []
+    subFields: [],
+    color: '#rose-200'
+  },
+  {
+    name: 'Coin Flip',
+    label: 'Layout',
+    emoji: '💰',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Direct Link',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: true,
+    subFields: [],
+    color: 'rose-200'
+  },
+  {
+    name: 'Click Card',
+    label: 'Layout',
+    emoji: '🃏',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Direct Link',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: true,
+    subFields: [],
+    color: 'rose-200'
   },
   {
     name: 'Core',
@@ -240,41 +321,6 @@ const fields = [
     finalUrl: true,
     subFields: []
   }
-  /* {
-    name: 'Carousel Preview',
-    selected: false,
-    choice: false,
-    value: [
-      {
-        name: 'URL',
-        value: ''
-      }
-    ],
-    restId: false,
-    finalUrl: false,
-    subFields: []
-  } */
 ]
-
-/* const previews = [
-  {
-    name: 'Carousel Preview',
-    label: 'Carousel Preview',
-    emoji: '🎠',
-    selected: false,
-    choice: true,
-    value: [
-      {
-        name: 'URL',
-        value: ''
-      },
-    ],
-    restId: false,
-    finalUrl: false,
-    subFields: []
-  },
-] */
-
-
 
 export { fields }
