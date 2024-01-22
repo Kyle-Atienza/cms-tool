@@ -8,6 +8,9 @@
       <button class="btn btn-sm" @click="copyString(sanitizedName)">
         Copy Sanitized
       </button>
+      <button class="btn btn-sm" @click="copyString(noSpaceName)">
+        Copy No Space
+      </button>
       <button class="btn btn-sm" @click="copyString(id)">
         Copy ID
       </button>
@@ -22,6 +25,7 @@ export default {
   setup() {
     const fullName = ref('')
     const sanitizedName = ref('')
+    const noSpaceName = ref('')
     const id = ref('')
 
     const copyString = str => {
@@ -38,6 +42,8 @@ export default {
       nameToSanitize = nameToSanitize.replaceAll('$', 'USD')
       nameToSanitize = nameToSanitize.replaceAll('%', 'PCT')
       nameToSanitize = nameToSanitize.replaceAll('&', 'And')
+
+      noSpaceName = nameToSanitize.replace(' ', '')
 
       sanitizedName.value = nameToSanitize
       id.value = str.split(' ')[0]
