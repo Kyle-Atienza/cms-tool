@@ -43,7 +43,7 @@ export default {
       nameToSanitize = nameToSanitize.replaceAll('%', 'PCT')
       nameToSanitize = nameToSanitize.replaceAll('&', 'And')
 
-      noSpaceName = nameToSanitize.replace(' ', '')
+      noSpaceName = nameToSanitize.replaceAll(' ', '')
 
       sanitizedName.value = nameToSanitize
       id.value = str.split(' ')[0]
