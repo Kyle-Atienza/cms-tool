@@ -57,6 +57,7 @@ export default {
     return {
       fullName,
       sanitizedName,
+      noSpaceName,
       id,
 
       copyString
