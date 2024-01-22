@@ -3,10 +3,10 @@ const getCommentFromFields = (data, depth = 0) => {
   const tab = '\t'.repeat(depth)
 
   data.forEach((obj) => {
-    const restId = obj.value.find((valueObj) => valueObj.name === 'Rest ID')?.value || ''
-    const dl = obj.value.find((valueObj) => valueObj.name === 'Direct Link')?.value || ''
-    const finalUrl = obj.value.find((valueObj) => valueObj.name === 'Final URL')?.value || ''
-    const id = obj.value.find((valueObj) => valueObj.name === 'ID')?.value || ''
+    const restId = obj.value.find((valueObj) => valueObj.name === 'Rest ID') ?.value || ''
+    const dl = obj.value.find((valueObj) => valueObj.name === 'Direct Link') ?.value || ''
+    const finalUrl = obj.value.find((valueObj) => valueObj.name === 'Final URL') ?.value || ''
+    const id = obj.value.find((valueObj) => valueObj.name === 'ID') ?.value || ''
 
     if (obj.selected !== false) {
       result += `${tab}<li>${obj.name}: `

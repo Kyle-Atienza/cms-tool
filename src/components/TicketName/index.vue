@@ -17,27 +17,28 @@
 
 <script>
 import { ref, watch, onMounted } from 'vue'
- 
+
 export default {
   setup() {
     const fullName = ref('')
     const sanitizedName = ref('')
     const id = ref('')
 
-    const copyString = (str) => {
+    const copyString = str => {
       navigator.clipboard.writeText(str)
     }
 
-    watch(fullName, (str) => {
+    watch(fullName, str => {
       sessionStorage.setItem('ticketName', fullName.value)
 
-      const pattern = /[\/\\:*?"<>|,–+]/g;
+      const pattern = /[\/\\:*?"<>|,–+]/g
       let nameToSanitize = str
 
-      nameToSanitize = nameToSanitize.replace(pattern, '');
+      nameToSanitize = nameToSanitize.replace(pattern, '')
       nameToSanitize = nameToSanitize.replaceAll('$', 'USD')
       nameToSanitize = nameToSanitize.replaceAll('%', 'PCT')
-  
+      nameToSanitize = nameToSanitize.replaceAll('&', 'And')
+
       sanitizedName.value = nameToSanitize
       id.value = str.split(' ')[0]
     })
@@ -52,7 +53,7 @@ export default {
       sanitizedName,
       id,
 
-      copyString,
+      copyString
     }
   }
 }

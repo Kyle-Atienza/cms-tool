@@ -39,6 +39,32 @@ const fields = [
     subFields: []
   },
   {
+    name: 'Insta Stories',
+    label: 'Insta Stories',
+    emoji: '📱',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Preview URL',
+        parentField: true,
+        value: ''
+      },
+      {
+        name: 'Promotions Direct Link',
+        value: ''
+      },
+      {
+        name: 'Preview Direct Link',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: false,
+    previewUrl: true,
+    subFields: []
+  },
+  {
     name: 'ODR Banner',
     label: 'ODR Banner',
     emoji: '🏁',
@@ -289,6 +315,23 @@ const fields = [
     value: [
       {
         name: 'Direct Link',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: true,
+    subFields: [],
+    color: 'rose-200'
+  },
+  {
+    name: 'Game Test',
+    label: 'Game Test',
+    emoji: '🧪',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Game Test URL',
         value: ''
       }
     ],
