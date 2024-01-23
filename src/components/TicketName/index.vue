@@ -1,19 +1,23 @@
 <template>
   <div class="flex flex-col gap-2">
-    <input type="text" placeholder="Enter Ticket Name" class="input w-full w-full" v-model="fullName" />
+    <input
+      type="text"
+      placeholder="Enter Ticket Name"
+      class="input w-full w-full"
+      v-model="fullName"
+    />
     <div class="flex flex-wrap gap-2">
-      <button class="btn btn-sm" @click="copyString(fullName)">
-        Copy Full
-      </button>
-      <button class="btn btn-sm" @click="copyString(sanitizedName)">
-        Copy Sanitized
-      </button>
-      <button class="btn btn-sm" @click="copyString(noSpaceName)">
-        Copy No Space
-      </button>
-      <button class="btn btn-sm" @click="copyString(id)">
-        Copy ID
-      </button>
+      <button class="btn btn-sm" @click="copyString(fullName)">Copy Full</button>
+      <button class="btn btn-sm" @click="copyString(sanitizedName)">Copy Sanitized</button>
+      <button class="btn btn-sm" @click="copyString(id)">Copy ID</button>
+      <details class="dropdown">
+        <summary class="btn btn-sm">Convert Case</summary>
+        <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+          <li @click="copyString(snakeCaseName)"><a>Snake Case</a></li>
+          <li @click="copyString(camelCaseName)"><a>Camel Case</a></li>
+          <li @click="copyString(skewerCaseName)"><a>Skewer Case</a></li>
+        </ul>
+      </details>
     </div>
   </div>
 </template>
@@ -25,14 +29,16 @@ export default {
   setup() {
     const fullName = ref('')
     const sanitizedName = ref('')
-    const noSpaceName = ref('')
+    const snakeCaseName = ref('')
+    const camelCaseName = ref('')
+    const skewerCaseName = ref('')
     const id = ref('')
 
-    const copyString = str => {
+    const copyString = (str) => {
       navigator.clipboard.writeText(str)
     }
 
-    watch(fullName, str => {
+    watch(fullName, (str) => {
       sessionStorage.setItem('ticketName', fullName.value)
 
       const pattern = /[\/\\:*?"<>|,–+]/g
@@ -43,7 +49,12 @@ export default {
       nameToSanitize = nameToSanitize.replaceAll('%', 'PCT')
       nameToSanitize = nameToSanitize.replaceAll('&', 'And')
 
-      noSpaceName = nameToSanitize.replaceAll(' ', '')
+      snakeCaseName.value = nameToSanitize.replaceAll(/\s+/g, '_')
+      camelCaseName.value = `${nameToSanitize.split(' ')[0].toLowerCase()}${nameToSanitize
+        .split(' ')
+        .slice(1)
+        .join('')}`
+      skewerCaseName.value = nameToSanitize.replaceAll(/\s+/g, '-')
 
       sanitizedName.value = nameToSanitize
       id.value = str.split(' ')[0]
@@ -57,11 +68,13 @@ export default {
     return {
       fullName,
       sanitizedName,
-      noSpaceName,
+      snakeCaseName,
+      camelCaseName,
+      skewerCaseName,
       id,
 
       copyString
     }
   }
 }
-</script> 
+</script>

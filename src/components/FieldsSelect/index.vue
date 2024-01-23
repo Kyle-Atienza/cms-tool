@@ -6,7 +6,7 @@
       :key="index"
       @click="onSelectField(field)"
     >
-      {{ field.name }}
+      {{ field.emoji }} {{ field.name }}
     </button>
   </div>
 </template>
