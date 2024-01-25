@@ -3,13 +3,12 @@ const getCommentFromFields = (data, depth = 0) => {
   const tab = '\t'.repeat(depth)
 
   data.forEach((obj) => {
-    const banners = obj.value.find((valueObj) => valueObj.name === 'Banners')?.value || []
+    const urlFields = ['Direct Link', 'Game Test URL']
+
     const restId = obj.value.find((valueObj) => valueObj.name === 'Rest ID')?.value || ''
     const patId = obj.value.find((valueObj) => valueObj.name === 'PAT ID')?.value || ''
     const edsId = obj.value.find((valueObj) => valueObj.name === 'EDS ID')?.value || ''
-    const dl = obj.value.find((valueObj) => valueObj.name === 'Direct Link')?.value || ''
-    const finalUrl = obj.value.find((valueObj) => valueObj.name === 'Final URL')?.value || ''
-    const id = obj.value.find((valueObj) => valueObj.name === 'ID')?.value || ''
+    const url = obj.value.find((valueObj) => urlFields.includes(valueObj.name))?.value || ''
 
     if (obj.selected !== false) {
       result += `${tab}<li>${obj.name}: `
@@ -17,16 +16,13 @@ const getCommentFromFields = (data, depth = 0) => {
 
       if (obj.value) {
         if (restId) {
-          // for rest id
-          result += `${restId} - <a href="${dl}">DL</a>`
+          result += `${restId} - <a href="${url}">DL</a>`
         } else if (patId) {
-          // eds and pat
           result = result.substring(0, result.length - 2) // remove colon (': ')
-          result += ` (${patId}): <a href="${dl}">${dl}</a>`
+          result += ` (${patId}): <a href="${url}">${url}</a>`
         } else if (edsId) {
-          // eds and pat
           result = result.substring(0, result.length - 2) // remove colon (': ')
-          result += ` (${edsId}): <a href="${dl}">${dl}</a>`
+          result += ` (${edsId}): <a href="${url}">${url}</a>`
         } else if (obj.name === 'Banners') {
           const url = obj.value.find((valueObj) => valueObj.name === 'Image URL')?.value
           const bigBanner = obj.value.find(
@@ -72,17 +68,14 @@ const getCommentFromFields = (data, depth = 0) => {
             })
             result += '</ul>'
           } else {
-            result += `<a href="${dl}">${dl}</a>`
+            result += `<a href="${url}">${url}</a>`
           }
         }
       }
 
       result += `</li>\n`
 
-      //subfields
       if (obj.subFields) {
-        // console.log(obj.subFields)
-
         result += getCommentFromFields(obj.subFields, depth + 1)
       }
     }
