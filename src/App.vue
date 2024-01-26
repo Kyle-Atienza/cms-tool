@@ -12,10 +12,6 @@
             <p class="text-2xl leading-[1em]">Needs</p>
             <fields-select :fields="ticketNeeds" @updateFields="(index) => onAddField(index)" />
           </div>
-          <!-- <div class="flex flex-col border-2 p-4 rounded-xl mt-4">
-            <p class="text-2xl leading-[1em]">Slug</p>
-            <slug-fields class="mt-4" />
-          </div> -->
         </div>
         <div class="flex flex-col gap-1/2">
           <div class="flex gap-2">
@@ -26,7 +22,6 @@
       </div>
       <div class="mt-4 flex-1 h-1/2">
         <rich-text class="" ref="richText" />
-        <!-- <button class="btn mt-4 w-full btn-primary" @click="onCopyComment">Copy Comment</button> -->
       </div>
     </div>
     <div class="min-h-screen flex flex-col gap-5 items-center justify-center flex-1">
@@ -114,7 +109,6 @@ export default {
     )
 
     onMounted(() => {
-      // console.log(JSON.parse(sessionStorage.getItem('ticket')))
       ticketNeeds.value = fields
 
       if (JSON.parse(sessionStorage.getItem('ticket'))) {
