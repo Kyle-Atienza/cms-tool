@@ -39,6 +39,28 @@ const fields = [
     subFields: []
   },
   {
+    name: 'Mobile PLP',
+    label: 'Mobile PLP',
+    emoji: '📲',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Preview URL',
+        parentField: true,
+        value: ''
+      },
+      {
+        name: 'Direct Link',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: false,
+    previewUrl: true,
+    subFields: []
+  },
+  {
     name: 'Insta Stories',
     label: 'Insta Stories',
     emoji: '📱',
