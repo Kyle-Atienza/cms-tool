@@ -261,6 +261,28 @@ const fields = [
     subFields: []
   },
   {
+    name: 'Marquee',
+    label: 'Marquee',
+    emoji: '⛺',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Preview URL',
+        parentField: true,
+        value: ''
+      },
+      {
+        name: 'Direct Link',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: false,
+    previewUrl: true,
+    subFields: []
+  },
+  {
     name: 'Client Overlay',
     label: 'Client Overlay',
     emoji: '💻',
