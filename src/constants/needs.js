@@ -39,6 +39,28 @@ const fields = [
     subFields: []
   },
   {
+    name: 'Mobile PLP',
+    label: 'Mobile PLP',
+    emoji: '📲',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Preview URL',
+        parentField: true,
+        value: ''
+      },
+      {
+        name: 'Direct Link',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: false,
+    previewUrl: true,
+    subFields: []
+  },
+  {
     name: 'Insta Stories',
     label: 'Insta Stories',
     emoji: '📱',
@@ -55,7 +77,7 @@ const fields = [
         value: ''
       },
       {
-        name: 'Preview Direct Link',
+        name: 'Content Direct Link',
         value: ''
       }
     ],
@@ -80,6 +102,45 @@ const fields = [
     finalUrl: false,
     previewUrl: false,
     subFields: [],
+    color: 'green-200'
+  },
+  {
+    name: 'Video Banner',
+    label: 'Video Banner',
+    emoji: '🎞',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Direct Link',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: false,
+    previewUrl: false,
+    subFields: [
+      /* {
+        name: 'Video Banner',
+        label: 'Video Banner',
+        value: [
+          {
+            name: 'Direct Link',
+            value: ''
+          }
+        ]
+      },
+      {
+        name: 'ODR Video Banner',
+        label: 'ODR Video Banner',
+        value: [
+          {
+            name: 'Direct Link',
+            value: ''
+          }
+        ]
+      } */
+    ],
     color: 'green-200'
   },
   {
@@ -131,20 +192,24 @@ const fields = [
   {
     name: 'Banners',
     label: 'Banners',
-    emoji: '🏆',
+    emoji: '🏳',
     selected: false,
     choice: true,
     value: [
       {
-        name: 'Big Banner',
+        name: 'Image URL',
         value: ''
       },
       {
-        name: 'Exit Banner',
+        name: 'Big Banner Image',
         value: ''
       },
       {
-        name: 'Exit Banner w/ CTA',
+        name: 'Exit Banner Image',
+        value: ''
+      },
+      {
+        name: 'Exit Banner w/ CTA Image',
         value: ''
       }
     ],
@@ -220,12 +285,12 @@ const fields = [
   {
     name: 'PAT',
     label: 'PAT',
-    emoji: '',
+    emoji: '🆔',
     selected: false,
     choice: true,
     value: [
       {
-        name: 'ID',
+        name: 'PAT ID',
         value: ''
       },
       {
@@ -240,12 +305,12 @@ const fields = [
   {
     name: 'EDS',
     label: 'EDS',
-    emoji: '',
+    emoji: '🆔',
     selected: false,
     choice: true,
     value: [
       {
-        name: 'ID',
+        name: 'EDS ID',
         value: ''
       },
       {

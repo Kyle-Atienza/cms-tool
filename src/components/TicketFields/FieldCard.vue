@@ -10,7 +10,14 @@
           tabindex="1"
         />
         <div class="mt-4 flex justify-end gap-2">
-          <button class="btn btn-success" tabindex="2" @click="onAddSubField" @keydown.enter="onAddSubField">confirm</button>
+          <button
+            class="btn btn-success"
+            tabindex="2"
+            @click="onAddSubField"
+            @keydown.enter="onAddSubField"
+          >
+            confirm
+          </button>
           <button class="btn btn-error" @click="newSubFieldDialog.close()">close</button>
         </div>
       </div>
@@ -107,18 +114,23 @@
     </div>
     <div v-for="(field, index) in modelValue" :key="index" class="flex items-center">
       <div class="mt-3 w-full">
-        <input-field :name="field.name" v-model="field.value" v-if="field.parentField || showFields" />
+        <input-field
+          :name="field.name"
+          v-model="field.value"
+          v-if="field.parentField || showFields"
+        />
       </div>
     </div>
-    <div>
-    </div>
+    <div></div>
   </div>
 </template>
 
 <script>
-import InputField from "./InputField.vue"
+import { sitecore } from '../../constants/links'
 
-import { ref, onMounted } from 'vue'
+import InputField from './InputField.vue'
+
+import { ref, onMounted, watch } from 'vue'
 
 export default {
   props: {
@@ -139,7 +151,7 @@ export default {
     }
   },
   components: {
-    InputField,
+    InputField
   },
   emits: ['update:modelValue', 'delete'],
   setup(props, { emit }) {
@@ -148,6 +160,7 @@ export default {
     const newSubFieldName = ref('')
     const showFields = ref(true)
     const showDialog = ref(false)
+    const sitecoreUrl = ref('')
 
     onMounted(() => {
       fields.value = props.modelValue
@@ -185,7 +198,7 @@ export default {
           })
         }
         newSubFieldDialog.value.close()
-        newSubFieldName.value = ''  
+        newSubFieldName.value = ''
 
         showFields.value = false
       } else {
@@ -193,11 +206,19 @@ export default {
       }
     }
 
+    watch(
+      () => sessionStorage.getItem('brand'),
+      (brand) => {
+        console.log(brand)
+      }
+    )
+
     return {
       fields,
       newSubFieldDialog,
       newSubFieldName,
       showFields,
+      sitecore,
 
       onCreateSubField,
       onAddSubField

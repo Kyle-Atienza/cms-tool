@@ -1,6 +1,8 @@
 <template>
   <div class="flex">
-    <div class="w-[420px] flex flex-col min-w-[280px] h-screen sticky top-0 bg-white p-5 overflow-scroll">
+    <div
+      class="w-[420px] flex flex-col min-w-[280px] h-screen sticky top-0 bg-white p-5 overflow-scroll"
+    >
       <div class="flex flex-col">
         <div class="overflow-auto">
           <ticket-name />
@@ -8,15 +10,8 @@
           <ticket-badges class="mt-4" />
           <div class="flex flex-col border-2 p-4 rounded-xl mt-4">
             <p class="text-2xl leading-[1em]">Needs</p>
-            <fields-select
-              :fields="ticketNeeds"
-              @updateFields="(index) => onAddField(index)"
-            />
+            <fields-select :fields="ticketNeeds" @updateFields="(index) => onAddField(index)" />
           </div>
-          <!-- <div class="flex flex-col border-2 p-4 rounded-xl mt-4">
-            <p class="text-2xl leading-[1em]">Slug</p>
-            <slug-fields class="mt-4" />
-          </div> -->
         </div>
         <div class="flex flex-col gap-1/2">
           <div class="flex gap-2">
@@ -24,10 +19,9 @@
             <button class="btn mt-4 flex-1 btn-error" @click="setInitialFields">Reset</button>
           </div>
         </div>
-      </div>  
+      </div>
       <div class="mt-4 flex-1 h-1/2">
         <rich-text class="" ref="richText" />
-        <button class="btn mt-4 w-full btn-primary" @click="onCopyComment">Copy Comment</button>
       </div>
     </div>
     <div class="min-h-screen flex flex-col gap-5 items-center justify-center flex-1">
@@ -42,13 +36,13 @@
 </template>
 
 <script>
-import { 
+import {
   TicketName,
   TicketBadges,
   FieldsSelect,
   TicketFields,
   SlugFields,
-  RichText 
+  RichText
 } from './components'
 
 import { flattenObjectArrayRecursive } from './helpers/arrayHelper'
@@ -77,7 +71,7 @@ export default {
     }
 
     const onAddField = (fieldIndex) => {
-      ticketNeeds.value[fieldIndex].selected = !ticketNeeds.value[fieldIndex].selected;
+      ticketNeeds.value[fieldIndex].selected = !ticketNeeds.value[fieldIndex].selected
       saveData()
     }
 
@@ -115,7 +109,6 @@ export default {
     )
 
     onMounted(() => {
-      // console.log(JSON.parse(sessionStorage.getItem('ticket')))
       ticketNeeds.value = fields
 
       if (JSON.parse(sessionStorage.getItem('ticket'))) {
