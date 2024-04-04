@@ -196,6 +196,28 @@ const fields = [
     subFields: []
   },
   {
+    name: 'Client Overlay',
+    label: 'Client Overlay',
+    emoji: '💻',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Preview URL',
+        parentField: true,
+        value: ''
+      },
+      {
+        name: 'Direct Link',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: false,
+    previewUrl: true,
+    subFields: []
+  },
+  {
     name: 'PAT',
     label: 'PAT',
     emoji: '',
