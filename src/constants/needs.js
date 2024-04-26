@@ -61,6 +61,28 @@ const fields = [
     subFields: []
   },
   {
+    name: 'Desktop PLP',
+    label: 'Desktop PLP',
+    emoji: '💻',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Preview URL',
+        parentField: true,
+        value: ''
+      },
+      {
+        name: 'Direct Link',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: false,
+    previewUrl: true,
+    subFields: []
+  },
+  {
     name: 'Insta Stories',
     label: 'Insta Stories',
     emoji: '📱',
@@ -264,6 +286,28 @@ const fields = [
     name: 'Marquee',
     label: 'Marquee',
     emoji: '⛺',
+    selected: false,
+    choice: true,
+    value: [
+      {
+        name: 'Preview URL',
+        parentField: true,
+        value: ''
+      },
+      {
+        name: 'Direct Link',
+        value: ''
+      }
+    ],
+    restId: false,
+    finalUrl: false,
+    previewUrl: true,
+    subFields: []
+  },
+  {
+    name: 'Mobile Banner',
+    label: 'Mobile Banner',
+    emoji: '🚩',
     selected: false,
     choice: true,
     value: [
