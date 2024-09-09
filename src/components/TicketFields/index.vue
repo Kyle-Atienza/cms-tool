@@ -1,7 +1,7 @@
 <template>
   <div class="min-w-[500px] w-[60vw] max-w-[800px] flex flex-col gap-4">
     <div v-for="(field, index) in fields.filter((field) => field.selected)">
-      <div class="card bg-base-100 shadow-xl bg-white p-5">
+      <div :key="index" class="card bg-base-100 shadow-xl bg-white p-5">
         <field-card
           v-bind="{
             name: `${field.label || field.name} ${field.emoji}`,

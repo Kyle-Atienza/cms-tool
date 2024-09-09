@@ -73,14 +73,19 @@
 
 <script>
 import isURL from 'validator/lib/isURL'
-import { computed, ref } from 'vue'
+import { useSessionStorageStore } from '../../stores/sessionStorage.js'
+import { computed, ref, onMounted, reactive, watch } from 'vue'
 
 export default {
   props: {
     name: String,
+    getValue: Function,
     modelValue: String
   },
-  setup(props) {
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const sessionStorageStore = useSessionStorageStore()
+
     const fieldValue = computed(() => props.modelValue)
     const isCopied = ref(false)
     const isRestId = computed(() => {
@@ -109,11 +114,16 @@ export default {
         return false
       }
     })
+    const ticketDetails = reactive({
+      brand: null,
+      product: null,
+      state: null,
+      qaFilter: null
+    })
 
     const openURL = () => {
       window.open(fieldValue.value, '_blank')
     }
-
     const copyValue = () => {
       navigator.clipboard.writeText(fieldValue.value)
       isCopied.value = true
@@ -121,11 +131,34 @@ export default {
         isCopied.value = false
       }, 1000)
     }
-
+    const setTicketDetailValues = () => {
+      ticketDetails.brand = sessionStorage.getItem('brand') || null
+      ticketDetails.product = sessionStorage.getItem('product') || null
+      ticketDetails.state = sessionStorage.getItem('state') || null
+      ticketDetails.qaFilter = sessionStorage.getItem('qaFilter') || null
+    }
     const testRestId = () => {
       navigator.clipboard.writeText(fieldValue.value.replace(' ', '').replace('/id/', ''))
       window.open('https://promo.wv.betmgm.com/en/promo/p/tools/qa?qa=true', '_blank')
     }
+    const updateValue = () => {
+      if (props.getValue) {
+        emit('update:modelValue', props.getValue(ticketDetails))
+      }
+    }
+
+    onMounted(() => {
+      setTicketDetailValues()
+      updateValue()
+    })
+
+    watch(
+      () => sessionStorageStore.changes,
+      e => {
+        setTicketDetailValues()
+        updateValue()
+      }
+    )
 
     return {
       isCopied,
@@ -139,36 +172,3 @@ export default {
   }
 }
 </script>
-
-<!-- function checkStringValidity(inputString) {
-  // Check if the string contains "/id/" and remove it
-  if (inputString.includes("/id/")) {
-      inputString = inputString.replace("/id/", "");
-  }
-
-  // Split the string by "-" and check the length of each element
-  const splitString = inputString.split("-");
-  if (splitString.length === 5 &&
-      splitString[0].length === 8 &&
-      splitString[1].length === 4 &&
-      splitString[2].length === 4 &&
-      splitString[3].length === 4 &&
-      splitString[4].length === 12) {
-      return true;
-  } else {
-      return false;
-  }
-}
-
-// Test cases
-const testCases = [
-  "/id/455fb25b-6ed9-4809-814c-1080979ece58",
-  "455fb25b-6ed9-4809-814c-1080979ece58",
-  "123-123-123",
-  "/id/123-123"
-];
-
-testCases.forEach(testCase => {
-  console.log(`${testCase} - ${checkStringValidity(testCase)}`);
-});
- -->

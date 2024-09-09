@@ -1,100 +1,110 @@
 <template>
-  <div class="flex gap-2 flex-wrap">
-    <!-- brand select -->
-    <select
-      class="select select-bordered select-sm w-sm min-h-0 h-[45px] w-[120px]"
-      v-model="value.brand"
-    >
-      <option hidden selected>
-        {{ defaultValue.brand }}
-      </option>
-      <option v-for="(brand, index) in brandsArray" :key="index" :value="brand">{{ brand }}</option>
-    </select>
-    <!-- product select -->
-    <select
-      class="select select-bordered select-sm w-sm min-h-0 h-[45px] w-[100px]"
-      v-model="value.product"
-    >
-      <option hidden selected>
-        {{ defaultValue.product }}
-      </option>
-      <option v-for="(product, index) in productsArray" :key="index" :value="product">
-        {{ capitalizeCase(product) }}
-      </option>
-    </select>
-    <!-- state select -->
-    <select
-      class="select select-bordered select-sm w-sm min-h-0 h-[45px] w-[100px]"
-      v-model="value.state"
-    >
-      <option hidden selected>
-        {{ defaultValue.state }}
-      </option>
-      <option v-for="(state, index) in statesArray" :key="index" :value="state">
-        {{ state }}
-      </option>
-    </select>
-    <div class="flex items-center gap-2 p-2 rounded-xl border-2">
-      <input type="checkbox" class="toggle" />
-      CHR
-    </div>
+  <div>
+    <label class="form-control w-full ">
+      <div class="label">
+        <span class="label-text">Ticket Details</span>
+      </div>
+      <div class="flex gap-2 flex-wrap">
+        <!-- brand select -->
+        <select
+          class="select select-bordered select-sm w-sm min-h-0 h-[45px] w-[120px]"
+          v-model="ticketDetails.brand"
+        >
+          <option :value="null" hidden selected>
+            Brand
+          </option>
+          <option v-for="({value, label}, index) in brandsv2" :key="index" :value="value">{{ label }}</option>
+        </select>
+        <!-- product select -->
+        <select
+          class="select select-bordered select-sm w-sm min-h-0 h-[45px] w-[120px]"
+          v-model="ticketDetails.product"
+        >
+          <option :value="null" hidden selected>
+            Label
+          </option>
+          <option v-for="({value, label}, index) in productsArray" :key="index" :value="value">{{ label }}</option>
+        </select>
+        <!-- state select -->
+        <select
+          class="select select-bordered select-sm w-sm min-h-0 h-[45px] w-[120px]"
+          v-model="ticketDetails.state"
+        >
+          <option :value="null" hidden selected>
+            State
+          </option>
+          <option v-for="({value, label}, index) in statesArray" :key="index" :value="value">{{ label }}</option>
+        </select>
+        <div class="flex items-center gap-2 p-2 rounded-xl border-2">
+          <input type="checkbox" class="toggle" />
+          CHR
+        </div>
+      </div>
+    </label>
+    <label class="form-control w-full ">
+      <div class="label">
+        <span class="label-text">QA Filter</span>
+      </div>
+      <input
+        type="text"
+        placeholder="Enter QA Filter"
+        class="input w-full w-full"
+        v-model="ticketDetails.qaFilter"
+      />
+    </label>
   </div>
 </template>
 
 <script>
-import { brands } from '../../constants/brands'
+import { brands, brandsv2 } from '../../constants/brands'
 import { sitecore } from '../../constants/links'
 
 import { capitalizeCase } from '../../helpers/stringHelper'
+import { useSessionStorageStore } from '../../stores/sessionStorage'
 
 import { computed, reactive, watch, onMounted } from 'vue'
 
 export default {
   setup() {
-    const defaultValue = reactive({
-      brand: 'Brand',
-      product: 'Product',
-      state: 'State'
+    const sessionStorageStore = useSessionStorageStore()
+
+    const ticketDetails = reactive({
+      brand: 'betmgm',
+      product: 'casino',
+      state: 'nj',
+      qaFilter: 'kyle'
     })
-    const value = reactive({
-      brand: defaultValue.brand,
-      product: defaultValue.product,
-      state: defaultValue.state
-    })
-    const brandsArray = computed(() => Object.keys(brands))
-    const productsArray = computed(() =>
-      value.brand && value.brand !== defaultValue.brand
-        ? Object.keys(brands[value.brand].products)
-        : []
+    const productsArray = computed(
+      () =>
+        ticketDetails.brand
+          ? brandsv2.find(brand => brand.value === ticketDetails.brand).products
+          : []
     )
-    const statesArray = computed(() => {
-      let array
+    const statesArray = computed(
+      () =>
+        ticketDetails.product
+          ? productsArray.value.find(product => product.value === ticketDetails.product).states
+          : []
+    )
 
-      if (value.product && value.product !== defaultValue.product) {
-        array = brands[value.brand].products[value.product].states
-      } else {
-        array = []
-      }
-
-      return array
-    })
-
-    watch(value, () => {
-      sessionStorage.setItem('brand', value.brand)
-      sessionStorage.setItem('product', value.product)
-      sessionStorage.setItem('state', value.state)
+    watch(ticketDetails, () => {
+      sessionStorage.setItem('brand', ticketDetails.brand)
+      sessionStorage.setItem('product', ticketDetails.product)
+      sessionStorage.setItem('state', ticketDetails.state)
+      sessionStorage.setItem('qaFilter', ticketDetails.qaFilter)
+      sessionStorageStore.changeSessionStorage()
     })
 
     onMounted(() => {
-      value.brand = sessionStorage.getItem('brand') || defaultValue.brand
-      value.product = sessionStorage.getItem('product') || defaultValue.product
-      value.state = sessionStorage.getItem('state') || defaultValue.state
+      ticketDetails.brand = sessionStorage.getItem('brand') || 'betmgm'
+      ticketDetails.product = sessionStorage.getItem('product') || 'casino'
+      ticketDetails.state = sessionStorage.getItem('state') || 'nj'
+      ticketDetails.state = sessionStorage.getItem('qaFilter') || 'kyle'
     })
 
     return {
-      defaultValue,
-      value,
-      brandsArray,
+      brandsv2,
+      ticketDetails,
       productsArray,
       statesArray,
 

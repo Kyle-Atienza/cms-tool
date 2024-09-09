@@ -201,6 +201,188 @@ const states = {
     }
 }
 
+const brandsv2 = [
+    {
+        label: 'BetMGM',
+        value: 'betmgm',
+        abbrv: 'MC',
+        products: [
+            {
+                label: 'Casino',
+                value: 'casino',
+                states: [
+                    {
+                        label: 'NJ',
+                        value: 'nj'
+                    },
+                    {
+                        label: 'PA',
+                        value: 'pa'
+                    },
+                    {
+                        label: 'MI',
+                        value: 'mi'
+                    },
+                    {
+                        label: 'WV',
+                        value: 'wv'
+                    }
+                ]
+            },
+            {
+                label: 'Poker',
+                value: 'poker',
+                states: [
+                    {
+                        label: 'NJ',
+                        value: 'nj'
+                    },
+                    {
+                        label: 'PA',
+                        value: 'pa'
+                    },
+                    {
+                        label: 'MI',
+                        value: 'mi'
+                    },
+                    {
+                        label: 'WV',
+                        value: 'wv'
+                    }
+                ]
+            },
+            {
+                label: 'Sports',
+                value: 'sports',
+                states: [
+                    {
+                        label: 'AZ',
+                        value: 'az'
+                    },
+                    {
+                        label: 'CO',
+                        value: 'co'
+                    },
+                    {
+                        label: 'DC',
+                        value: 'dc'
+                    },
+                    {
+                        label: 'IA',
+                        value: 'ia'
+                    },
+                    {
+                        label: 'IL',
+                        value: 'il'
+                    },
+                    {
+                        label: 'IN',
+                        value: 'in'
+                    },
+                    {
+                        label: 'KS',
+                        value: 'ks'
+                    },
+                    {
+                        label: 'KY',
+                        value: 'ky'
+                    },
+                    {
+                        label: 'LA',
+                        value: 'la'
+                    },
+                    {
+                        label: 'MA',
+                        value: 'ma'
+                    },
+                    {
+                        label: 'MD',
+                        value: 'md'
+                    },
+                    {
+                        label: 'MI',
+                        value: 'mi'
+                    },
+                    {
+                        label: 'MS',
+                        value: 'ms'
+                    },
+                    {
+                        label: 'NJ',
+                        value: 'nj'
+                    },
+                    {
+                        label: 'NY',
+                        value: 'ny'
+                    },
+                    {
+                        label: 'OH',
+                        value: 'oh'
+                    },
+                    {
+                        label: 'ON',
+                        value: 'on'
+                    },
+                    {
+                        label: 'PA',
+                        value: 'pa'
+                    },
+                    {
+                        label: 'TN',
+                        value: 'tn'
+                    },
+                    {
+                        label: 'VA',
+                        value: 'va'
+                    },
+                    {
+                        label: 'WV',
+                        value: 'wv'
+                    },
+                    {
+                        label: 'WY',
+                        value: 'wy'
+                    }
+                ]
+            }
+        ]
+    }, {
+        label: 'Borgata',
+        value: 'borgataonline',
+        abbrv: 'BC',
+        products: [
+            {
+                label: 'Casino',
+                value: 'casino',
+                states: [
+                    {
+                        label: 'NJ',
+                        value: 'nj'
+                    },
+                    {
+                        label: 'PA',
+                        value: 'pa'
+                    }
+                ]
+            },
+            {
+                label: 'Poker',
+                value: 'poker',
+                states: [
+                    {
+                        label: 'NJ',
+                        value: 'nj'
+                    },
+                    {
+                        label: 'PA',
+                        value: 'pa'
+                    }
+                ]
+            },
+        ]
+    }
+]
+
 const brands = {
     BetMGM: {
         abbrv: 'MC',
@@ -434,5 +616,6 @@ const sitecore = {
 export {
     states,
     brands,
+    brandsv2,
     sitecore
 }

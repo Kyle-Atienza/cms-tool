@@ -26,7 +26,8 @@ const fields = [
       {
         name: 'Preview URL',
         parentField: true,
-        value: ''
+        value: '',
+        getValue: ({ brand, state, qaFilter }) => `https://casino.${state}.${brand}.com/en/games?qa=${qaFilter}`
       },
       {
         name: 'Direct Link',
@@ -39,16 +40,61 @@ const fields = [
     subFields: []
   },
   {
-    name: 'Mobile PLP',
-    label: 'Mobile PLP',
+    name: 'PLP',
+    label: 'PLP',
     emoji: '📲',
+    selected: false,
+    choice: true,
+    value: [
+    ],
+    restId: false,
+    finalUrl: false,
+    previewUrl: true,
+    subFields: [
+      {
+        name: 'Mobile PLP',
+        value: [
+          {
+            name: 'Preview URL',
+            parentField: true,
+            value: '',
+            getValue: ({ brand, state, qaFilter }) => (brand && state) ? `https://poker.${state}.${brand}.com/en/mobileplp?qa=${qaFilter}` : ''
+          },
+          {
+            name: 'Direct Link',
+            value: ''
+          }
+        ],
+      },
+      {
+        name: 'Desktop PLP',
+        value: [
+          {
+            name: 'Preview URL',
+            parentField: true,
+            value: '',
+            getValue: ({ brand, state, qaFilter }) => (brand && state) ? `https://poker.${state}.${brand}.com/en/clientplp?qa=${qaFilter}` : ''
+          },
+          {
+            name: 'Direct Link',
+            value: ''
+          }
+        ],
+      },
+    ]
+  },
+  {
+    name: 'Mobile Banner',
+    label: 'Mobile Banner',
+    emoji: '🚩',
     selected: false,
     choice: true,
     value: [
       {
         name: 'Preview URL',
         parentField: true,
-        value: ''
+        value: '',
+        getValue: ({ brand, state, qaFilter }) => (brand && state) ? `https://poker.${state}.${brand}.com/en/mobilebanner?qa=${qaFilter}` : ''
       },
       {
         name: 'Direct Link',
@@ -61,8 +107,8 @@ const fields = [
     subFields: []
   },
   {
-    name: 'Desktop PLP',
-    label: 'Desktop PLP',
+    name: 'Client Overlay',
+    label: 'Client Overlay',
     emoji: '💻',
     selected: false,
     choice: true,
@@ -70,7 +116,8 @@ const fields = [
       {
         name: 'Preview URL',
         parentField: true,
-        value: ''
+        value: '',
+        getValue: ({ brand, state, qaFilter }) => (brand && state) ? `https://poker.${state}.${brand}.com/en/mobilebanner?qa=${qaFilter}` : ''
       },
       {
         name: 'Direct Link',
@@ -92,7 +139,8 @@ const fields = [
       {
         name: 'Preview URL',
         parentField: true,
-        value: ''
+        value: '',
+        getValue: ({ brand, state, qaFilter }) => (brand && state) ? `https://casino.${state}.${brand}.com/en/games?qa=${qaFilter}` : ''
       },
       {
         name: 'Promotions Direct Link',
@@ -270,7 +318,8 @@ const fields = [
       {
         name: 'Preview URL',
         parentField: true,
-        value: ''
+        value: '',
+        getValue: ({ brand, state, qaFilter }) => (brand && state) ? `https://promo.${state}.${brand}.com/en/promo/offers?qa=${qaFilter}` : ''
       },
       {
         name: 'Direct Link',
@@ -292,51 +341,8 @@ const fields = [
       {
         name: 'Preview URL',
         parentField: true,
-        value: ''
-      },
-      {
-        name: 'Direct Link',
-        value: ''
-      }
-    ],
-    restId: false,
-    finalUrl: false,
-    previewUrl: true,
-    subFields: []
-  },
-  {
-    name: 'Mobile Banner',
-    label: 'Mobile Banner',
-    emoji: '🚩',
-    selected: false,
-    choice: true,
-    value: [
-      {
-        name: 'Preview URL',
-        parentField: true,
-        value: ''
-      },
-      {
-        name: 'Direct Link',
-        value: ''
-      }
-    ],
-    restId: false,
-    finalUrl: false,
-    previewUrl: true,
-    subFields: []
-  },
-  {
-    name: 'Client Overlay',
-    label: 'Client Overlay',
-    emoji: '💻',
-    selected: false,
-    choice: true,
-    value: [
-      {
-        name: 'Preview URL',
-        parentField: true,
-        value: ''
+        value: '',
+        getValue: ({ brand, state, qaFilter }) => (brand && state) ? `https://sports.${state}.${brand}.com/en/sports?qa=${qaFilter}` : ''
       },
       {
         name: 'Direct Link',

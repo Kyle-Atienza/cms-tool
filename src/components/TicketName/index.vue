@@ -34,14 +34,14 @@ export default {
     const skewerCaseName = ref('')
     const id = ref('')
 
-    const copyString = (str) => {
+    const copyString = str => {
       navigator.clipboard.writeText(str)
     }
 
-    watch(fullName, (str) => {
+    watch(fullName, str => {
       sessionStorage.setItem('ticketName', fullName.value)
 
-      const pattern = /[\/\\:*?"<>|,–+]/g
+      const pattern = /[<>:"/\\|?*\x00-\x1F–+]/g
       let nameToSanitize = str
 
       nameToSanitize = nameToSanitize.replace(pattern, '')

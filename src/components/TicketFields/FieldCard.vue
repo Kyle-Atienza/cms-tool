@@ -116,6 +116,7 @@
       <div class="mt-3 w-full">
         <input-field
           :name="field.name"
+          :get-value="field.getValue"
           v-model="field.value"
           v-if="field.parentField || showFields"
         />
@@ -172,18 +173,16 @@ export default {
     }
 
     const onAddSubField = () => {
-      const newField = fields.value
-        .filter((field) => !field.parentField)
-        .map((field) => ({
-          name: field.name,
-          value: ''
-        }))
+      const newField = fields.value.filter(field => !field.parentField).map(field => ({
+        name: field.name,
+        value: ''
+      }))
 
       if (newSubFieldName.value) {
         const multiFields = newSubFieldName.value.split(',')
 
         if (multiFields.length) {
-          multiFields.forEach((multiField) => {
+          multiFields.forEach(multiField => {
             props.subFields.push({
               name: multiField,
               value: newField,
@@ -208,7 +207,7 @@ export default {
 
     watch(
       () => sessionStorage.getItem('brand'),
-      (brand) => {
+      brand => {
         console.log(brand)
       }
     )
